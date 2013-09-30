@@ -15,6 +15,7 @@ import javax.persistence.UniqueConstraint;
 
 import com.template.common.model.PersistentEntity;
 import com.template.common.model.enums.EnumProfile;
+import com.template.common.util.encrypt.EncryptHash;
 import com.template.common.validation.ValidationClass;
 import com.template.core.model.validation.UserValidation;
 
@@ -105,7 +106,7 @@ public class User implements PersistentEntity{
 	 * @param password the password to set
 	 */
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = EncryptHash.md5(password);
 	}
 
 	/**
@@ -130,7 +131,7 @@ public class User implements PersistentEntity{
 	 * @param passwordConfirmation the passwordConfirmation to set
 	 */
 	public void setPasswordConfirmation(String passwordConfirmation) {
-		this.passwordConfirmation = passwordConfirmation;
+		this.passwordConfirmation = EncryptHash.md5(passwordConfirmation);
 	}
 
 	/* (non-Javadoc)
